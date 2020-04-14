@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Epidemic simulator online - Luca Dibattista</title>
+  <title>Epidimie simulator</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">  <link rel="shortcut icon" type="image/svg"
@@ -32,21 +32,21 @@
   </style>
   <!-- Custom styles for this template -->
   <script src="https://unpkg.com/konva@4.2.2/konva.min.js"></script>
-  <script src="./plugins/chartjs/dist/Chart.js"></script>
+  <script src="./src/plugins/epidemic/Chart.min.js"></script>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="https://lucadibattista.it">Luca Dibattista</a>
+    <a class="navbar-brand" href="./">Epidimie simulator</a>
     <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button> -->
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link" href="https://lucadibattista.it/">Home</a>
-        <a class="nav-item nav-link" href="https://lucadibattista.it/portfolio/">Portfolio</a>
-        <a class="nav-item nav-link" href="https://lucadibattista.it/blog/">Blog</a>
-        <a class="nav-item nav-link active" href="#">Epidemic simulator <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link d-none" href="https://lennertderyck.be/">Home</a>
+        <a class="nav-item nav-link d-none" href="https://lucadibattista.it/portfolio/">Portfolio</a>
+        <a class="nav-item nav-link d-none" href="https://lucadibattista.it/blog/">Blog</a>
+        <a class="nav-item nav-link d-none active" href="#">Epidemic simulator <span class="sr-only">(current)</span></a>
       </div>
     </div>
   </nav>
@@ -132,17 +132,17 @@
             </small>
           </div>
           <div class="col-sm-4">
-            <label for="control_infection_rate">Infection rate: <span id="control_infection_rate_text"></span>%</label>
+            <label for="control_infection_rate">Infectiegraad: <span id="control_infection_rate_text"></span>%</label>
             <input type="range" id="control_infection_rate" class="form-control-range" aria-describedby="control_infection_rate_help">
             <small id="control_infection_rate_help" class="form-text text-muted">
-              The probability for an infected to infect another person in the nearby
+              De kans dat een geïnfecteerde persoon iemand anders infecteerd
             </small>
           </div>
           <div class="col-sm-4">
-            <label for="control_lethality_rate">Lethality: <span id="control_lethality_rate_text"></span>%</label>
+            <label for="control_lethality_rate">Dodelijkheid: <span id="control_lethality_rate_text"></span>%</label>
             <input type="range" id="control_lethality_rate" class="form-control-range" aria-describedby="control_lethality_rate_help">
             <small id="control_lethality_rate_help" class="form-text text-muted">
-              The probability for an infected to die
+              De kans dat iemand sterft aan het virus
             </small>
           </div>
         </div>
@@ -150,42 +150,42 @@
           <div class="col-sm-4">
             <div class="custom-control custom-switch">
               <input type="checkbox" class="custom-control-input" id="control_quarantine">
-              <label class="custom-control-label" for="control_quarantine">Activate quarantine</label>
+              <label class="custom-control-label" for="control_quarantine">Activeer quarantaine</label>
             </div>
           </div>
           <div class="col-sm-4">
-            <label for="control_desease_duration">Days before quarantine</label>
+            <label for="control_desease_duration">Dagen vóór quarantaine</label>
             <input type="number" id="control_days_to_quarantine" class="form-control" aria-describedby="control_desease_duration_help">
             <small id="control_desease_duration_help" class="form-text text-muted">
-              How many days before showing symphtoms and going in quarantine
+              Hoeveel dagen voordat symptomen zichtbaar zijn en men in quarantaine gaat
             </small>
           </div>
           <div class="col-sm-4">
-            <label for="control_asymptomatic_rate">Asymptomatic rate: <span id="control_asymptomatic_rate_text"></span>%</label>
+            <label for="control_asymptomatic_rate">Asymptomatiegraad <span id="control_asymptomatic_rate_text"></span>%</label>
             <input type="range" id="control_asymptomatic_rate" class="form-control-range" aria-describedby="control_asymptomatic_rate_help">
             <small id="control_asymptomatic_rate_help" class="form-text text-muted">
-              How many, among people who get the virus, don't go in quarantine (maybe for not showing symphtoms)
+              Hoeveel mensen, onder de mensen die het virus hebben, niet in quarantaine gaan (mogelijks omdat geen symptomen zichtbaar zijn)
             </small>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-sm-4">
-            <label for="control_intensive_care_rate">Intensive care rate: <span id="control_intensive_care_rate_text"></span>%</label>
+            <label for="control_intensive_care_rate">Intensive care <span id="control_intensive_care_rate_text"></span>%</label>
             <input type="range" id="control_intensive_care_rate" class="form-control-range" aria-describedby="control_intensive_care_rate_help">
             <small id="control_intensive_care_rate_help" class="form-text text-muted">
-              How many, among people who get the virus, need intensive care to not die
+              Hoeveel mensen, onder de mensen die het virus hebben, moeten op intensive care verzorgd worden om te overleven
             </small>
           </div>
           <div class="col-sm-4">
-            <label for="control_intensive_care_beds">Number of IC beds every 100 people</label>
+            <label for="control_intensive_care_beds">Aantal IC bedden per 100 personen</label>
             <input type="number" id="control_intensive_care_beds" class="form-control" aria-describedby="control_intensive_care_beds_help">
             <small id="control_intensive_care_beds_help" class="form-text text-muted">
-              E.g.: if there are 2 beds for 200 people, put "1" (1 bed every 100 people).<br>If there are no beds available, people who need IC will die
+              Bijvoorbeeld: als er 2 bedden zijn voor 200 personen, zet dit op "1" (1 bed per 100 personen)<br>Als er geen bedden beschikbaar zijn zullen mensen die deze zorgen nodig hebben sterven
             </small>
           </div>
         </div>
-        <button type="button" class="btn btn-secondary" id="control_stop">Stop simulation</button>
-        <button type="button" class="btn btn-primary" id="control_start">Start simulation</button>
+        <button type="button" class="btn btn-secondary" id="control_stop">Stop simulatie</button>
+        <button type="button" class="btn btn-primary" id="control_start">Start simulatie</button>
       </form>
     </div>
 
@@ -194,17 +194,17 @@
   <footer class="footer mt-auto py-3">
     <div class="container">
       <span class="text-muted">
-        Powered by <a href="https://lucadibattista.it">Luca Dibattista</a>. Inspired by <a href="https://www.youtube.com/watch?v=gxAaO2rsdIs" target="_blank">3Blue1Brown</a>.<br>
-        Code is <a href="https://github.com/LucaDiba/epidemic-simulator" target="_blank">available on GitHub</a> under the <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">GNU General Public License v3.0</a>.
+        Aangepast door <a href="https://beta.lennertderyck.be" target="_blank">Lennert De Ryck</a> – naar idee van <a href="https://lucadibattista.it">Luca Dibattista</a><br>
+        Code is <a href="https://github.com/lennertderyck/epidemic-simulator" target="_blank">beschikbaar op GitHub</a> – <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank">GNU General Public License v3.0</a>.
       </span>
     </div>
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-  <script src="./plugins/epidemic/header.js"></script>
-  <script src="./plugins/epidemic/index.js"></script>
-  <script src="./plugins/epidemic/listeners.js"></script>
-  <script src="./plugins/epidemic/chart.js"></script>
+  <script src="./src/plugins/epidemic/header.js"></script>
+  <script src="./src/plugins/epidemic/index.js"></script>
+  <script src="./src/plugins/epidemic/listeners.js"></script>
+  <script src="./src/plugins/epidemic/chart.js"></script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-32794172-6"></script>
