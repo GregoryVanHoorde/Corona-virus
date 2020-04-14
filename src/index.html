@@ -7,8 +7,7 @@
   <title>Epidemic simulator online - Luca Dibattista</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="./plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="shortcut icon" type="image/svg"
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">  <link rel="shortcut icon" type="image/svg"
     href="./images/iconfinder_virus-cell-life-biology-Microorganism_5859167.svg" />
 
   <style>
@@ -59,17 +58,17 @@
       </div>
       <div class="row">
         <div class="alert alert-danger col-sm-3" role="alert">
-          <span id="total_infected"></span> infected<br>
+          <span id="total_infected"></span> geïnfecteerd<br>
         </div>
         <div class="alert alert-light border border-dark col-sm-3" role="alert">
-          <span id="total_healthy"></span> healthy<br>
+          <span id="total_healthy"></span> gezond<br>
         </div>
         <div class="alert alert-primary col-sm-2" role="alert">
-          <span id="total_immune"></span> cured<br>
+          <span id="total_immune"></span> genezen<br>
         </div>
         <div class="alert alert-dark col-sm-4" role="alert">
-          <span id="total_dead"></span> deaths<br>
-          of which <span id="total_dead_for_intensive_care"></span> for missing beds in intensive care<br>
+          <span id="total_dead"></span> doden<br>
+          waarvan <span id="total_dead_for_intensive_care"></span> door niet genoeg plaatsen op intensive care<br>
         </div>
       </div>
       <div class="row">
@@ -77,59 +76,59 @@
           <div id="stage_container" class="border rounded border-dark" style="min-height: 500px;"></div>
         </div>
         <div class="col-sm-6">
-          <canvas id="chart" width="400" height="400">Your browser is not compatible</canvas>
+          <canvas id="chart" width="400" height="400">Je browser is niet compatibel</canvas>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-4">
-          <h6>Quarantine (<span id="total_in_quarantine"></span> people)</h6>
+          <h6>Quarantaine (<span id="total_in_quarantine"></span> mensen)</h6>
           <div id="stage_quarantine_container" class="border rounded border-dark" style="min-height: 100px;"></div>
         </div>
         <div class="col-sm-4">
-          <h6>Intensive care (<span id="total_in_intensive_care"></span> / <span id="max_total_in_intensive_care"></span> people)</h6>
+          <h6>Intensive care (<span id="total_in_intensive_care"></span> / <span id="max_total_in_intensive_care"></span> mensen)</h6>
           <div id="stage_intensive_care_container" class="border rounded border-dark" style="min-height: 100px;"></div>
         </div>
         <div class="col-sm-4">
-          <h6>Dead</h6>
+          <h6>Doden</h6>
           <div id="stage_dead_container" class="border rounded border-dark" style="min-height: 100px;"></div>
         </div>
       </div>
     </div>
     <div class="row">
-      <h3>Simulation parameters</h3>
+      <h3>Simulatie parameters</h3>
     </div>
     <div class="row mb-5">
       <form class="col-sm-12" id="control_form">
         <div class="form-group row">
           <div class="col-sm-4">
-            <label for="control_initial_population">Initial population</label>
+            <label for="control_initial_population">Initiële populatie</label>
             <input type="number" id="control_initial_population" class="form-control" aria-describedby="control_initial_population_help">
             <small id="control_initial_population_help" class="form-text text-muted">
-              Number of total people
+              Totaal aantal mensen
             </small>
           </div>
           <div class="col-sm-4">
-            <label for="control_initial_infected">Initial infected</label>
+            <label for="control_initial_infected">Initieel aantal geïnfecteerd</label>
             <input type="number" id="control_initial_infected" class="form-control" aria-describedby="control_initial_infected_help">
             <small id="control_initial_infected_help" class="form-text text-muted">
-              Number of initial people infected
+              Aantal mensen die geïnfecteerd zijn
             </small>
           </div>
           <div class="col-sm-4">
-            <label for="control_people_speed">People speed</label>
+            <label for="control_people_speed">Snelheid van mensen</label>
             <input type="range" id="control_people_speed" class="form-control-range" aria-describedby="control_people_speed_help">
             <small id="control_people_speed_help" class="form-text text-muted">
-              Speed with which people move.<br>
-              Decrease it to simulate lockdown
+              Snelheid waarmee mensen zich voortbewegen<br>
+              Verminderen om lockdown te simuleren
             </small>
           </div>
         </div>
         <div class="form-group row">
           <div class="col-sm-4">
-            <label for="control_desease_duration">Desease duration</label>
+            <label for="control_desease_duration">Ziektetijd</label>
             <input type="number" id="control_desease_duration" class="form-control" aria-describedby="control_desease_duration_help">
             <small id="control_desease_duration_help" class="form-text text-muted">
-              How many days before dying or healing
+              Hoelang het duurt om te genezen
             </small>
           </div>
           <div class="col-sm-4">
@@ -201,19 +200,19 @@
     </div>
   </footer>
 
-  <script src="./plugins/bootstrap/js/jquery-3.4.1.slim.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="./plugins/epidemic/header.js"></script>
   <script src="./plugins/epidemic/index.js"></script>
   <script src="./plugins/epidemic/listeners.js"></script>
   <script src="./plugins/epidemic/chart.js"></script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-32794172-6"></script>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-32794172-6"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'UA-32794172-8');
-  </script>
+  </script> -->
 
 </html>
