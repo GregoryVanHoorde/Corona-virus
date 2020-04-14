@@ -2,7 +2,7 @@
 A HTML/JavaScript simulator for an epidemc on a population.
 
 ### Live demo
-https://epidemic.lucadibattista.it/
+https://git.lennertderyck.be/epidemic-simulator/
 
 ### Screenshot
 ![Simulator screenshot](/images/simulator-screen.png)
